@@ -23,7 +23,7 @@ The production static export is in `out/`.
 - Architectural home hero: 115 image-traced SVG lines followed by an organic ink reveal
 - Original exploded-module illustration with scroll-linked annotations
 - Architectural home illustration with an animated current path
-- Interactive hybrid energy diagram with day/night states
+- Monochrome isometric energy workshop: projected solar equipment, looped cables, scroll-drawn energy routes, adjustable sunlight, day/night modes, grid-isolation demonstration and balanced illustrative power readouts
 - System selector, illustrative sizing calculator, accessible FAQs
 - Local downloadable project brief; no form submissions or personal-data storage
 - Responsive layouts and reduced-motion support
