@@ -40,12 +40,12 @@ export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  const gridCable=`M${at([470,-150,45])} C 1053 425 1116 421 1079 469 S 968 494 957 464 S 949 382 855 371 S 755 326 ${at([80,-90,40])}`;
  function reset(){setResetVersion(v=>v+1);setSunlight(80);setOutage(false);setManual(false);setActive(0);if(night)onToggle()}
  return <div ref={root} className={`energy-workshop ${night?'workshop-night':''} ${outage?'workshop-island':''}`}>
- <div className="workshop-topbar"><span className="micro">ENERGY STUDY / NO. 001</span><span className="micro">ONE SYSTEM. MANY POSSIBILITIES.</span><button onClick={reset} aria-label="Reset energy workshop"><RotateCcw size={13}/> RESET</button></div>
+ <div className="workshop-topbar"><button onClick={reset} aria-label="Reset energy workshop"><RotateCcw size={13}/> RESET</button></div>
  <div className="workshop-main">
  <div className={`workshop-scene ${sceneReady?'has-real-scene':''}`}>
  {sceneEnabled&&<EnergyScene night={night} sunlight={sunlight} outage={outage} solar={solar} battery={battery} grid={grid} lit={lit} active={active} resetVersion={resetVersion} onReady={markReady} onUnavailable={markUnavailable}/>}
 
- <div className="workshop-corner micro">A SMALL STUDY<br/>IN EVERYDAY ENERGY.</div>
+ 
  <svg viewBox="0 0 1200 650" className="workshop-svg" role="img" aria-hidden={sceneReady} aria-label={`Isometric solar energy workshop. ${night?'At night, the battery supplies the inverter and a working lamp.':'Sunlight powers the solar panel, hybrid inverter, battery and lamp.'} ${outage?'The grid is isolated and the battery-backed system continues supplying essential loads.':''}`}>
  <defs><pattern id={`${id}hatch`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(25)"><path d="M0 0V5" stroke="#45483f" strokeWidth=".35" opacity=".4"/></pattern><pattern id={`${id}grain`} width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".4" fill="#575c4d" opacity=".28"/><circle cx="7" cy="7" r=".25" fill="#575c4d" opacity=".25"/></pattern><radialGradient id={`${id}glow`}><stop stopColor="#fff" stopOpacity="1"/><stop offset=".45" stopColor="#fff" stopOpacity=".5"/><stop offset="1" stopColor="#fff" stopOpacity="0"/></radialGradient><radialGradient id={`${id}shadow`}><stop stopColor="#3b3e34" stopOpacity=".13"/><stop offset="1" stopColor="#3b3e34" stopOpacity="0"/></radialGradient></defs>
  <g transform="translate(60 25) scale(.9)">
@@ -99,15 +99,15 @@ export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  </g>
  </g>
  </svg>
- <span className="workshop-scale micro">FIG. 003 / THE ENERGY WORKSHOP</span><span className="workshop-move micro">DRAG TO EXPLORE ↔</span>
+ <span className="workshop-move micro">DRAG TO EXPLORE ↔</span>
  </div>
- <aside className="workshop-controls"><div className="workshop-control-title micro">CHANGE THE CONDITIONS.<br/>WATCH THE CONNECTIONS.</div>
+ <aside className="workshop-controls">
  <button className="workshop-mode" aria-pressed={night} onClick={onToggle}>{night?<Moon size={17} strokeWidth={1}/>:<Sun size={17} strokeWidth={1}/>}<span>{night?'Night mode':'Day mode'}<small>{night?'Stored energy takes over':'The roof is generating'}</small></span><span className="toggle"><i/></span></button>
  <div className="workshop-sunlight"><label htmlFor={`${id}sunlight`} className="micro">SUNLIGHT <span>{night?'0':sunlight}%</span></label><input id={`${id}sunlight`} aria-label="Sunlight intensity" type="range" min="0" max="100" step="5" value={night?0:sunlight} disabled={night} onChange={e=>setSunlight(Number(e.target.value))}/><div className="micro sunlight-range"><span>OVERCAST</span><span>CLEAR SKY</span></div></div>
  <button className={`workshop-outage ${outage?'is-active':''}`} aria-pressed={outage} onClick={()=>setOutage(!outage)}><Unplug size={15} strokeWidth={1}/><span>{outage?'Restore the grid':'Try a grid outage'}</span><ArrowUpRight size={14}/></button>
  <div className="workshop-readouts"><span className="micro">ILLUSTRATIVE / 4 KW ARRAY</span><dl><div><dt>Solar generation</dt><dd>{solar.toFixed(1)} <small>kW</small></dd></div><div><dt>Essential loads</dt><dd>{load.toFixed(1)} <small>kW</small></dd></div><div><dt>{battery>=0?'Charging storage':'From storage'}</dt><dd>{Math.abs(battery).toFixed(1)} <small>kW</small></dd></div><div><dt>{outage?'Grid connection':'Surplus to grid'}</dt><dd>{outage?'OFF':grid.toFixed(1)} {!outage&&<small>kW</small>}</dd></div></dl><MotionText as="p" kind="copy">{outage?'The grid is isolated. This battery-backed hybrid example keeps its essential circuits supplied.':night?'The sun has set. Energy stored earlier now supports the home.':'The roof supplies the home first, then storage. Any remaining surplus can flow to the grid.'}</MotionText></div>
  </aside></div>
- <div className="workshop-story"><div className="workshop-chapters" aria-label="Explore the energy journey">{chapters.map((c,i)=><button key={c.name} aria-pressed={active===i} onClick={()=>{setActive(i);setManual(true)}}><span>0{i+1}</span>{c.name}<i/></button>)}</div><div className="workshop-inspector" aria-live="polite"><span className="micro">0{active+1} / {chapters[active].name.toUpperCase()}</span><MotionText as="h3">{chapters[active].title}</MotionText><MotionText as="p" kind="copy">{chapters[active].body}</MotionText></div></div>
- <div className="workshop-footnote micro"><span><i/> A WORKING IDEA. AN EVERYDAY POSSIBILITY.</span><span>SIMULATED ENERGY FLOW · NOT LIVE SITE DATA</span></div>
+ <div className="workshop-story"><div className="workshop-chapters" aria-label="Explore the energy journey">{chapters.map((c,i)=><button key={c.name} aria-pressed={active===i} onClick={()=>{setActive(i);setManual(true)}}><span>0{i+1}</span>{c.name}<i/></button>)}</div><div className="workshop-inspector" aria-live="polite"><MotionText as="h3">{chapters[active].title}</MotionText><MotionText as="p" kind="copy">{chapters[active].body}</MotionText></div></div>
+ 
  </div>
 }
