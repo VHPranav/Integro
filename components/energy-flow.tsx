@@ -1,7 +1,9 @@
 'use client';
 
-import {useEffect,useId,useRef,useState} from 'react';
+import {useCallback,useEffect,useId,useRef,useState} from 'react';
 import {ArrowUpRight, Moon, RotateCcw, Sun, Unplug} from 'lucide-react';
+import dynamic from 'next/dynamic';
+const EnergyScene=dynamic(()=>import('./energy-scene'),{ssr:false});
 
 type Point=[number,number,number];
 const project=([x,y,z]:Point)=>[590+(x-y)*.74,355+(x+y)*.27-z];
@@ -26,20 +28,24 @@ function Cable({d,id,active,reverse=false,progress=1}:{d:string;id:string;active
 export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  const id=useId().replace(/:/g,'');
  const root=useRef<HTMLDivElement>(null);
- const [sunlight,setSunlight]=useState(80),[outage,setOutage]=useState(false),[active,setActive]=useState(0),[manual,setManual]=useState(false),[progress,setProgress]=useState(0),[tilt,setTilt]=useState({x:0,y:0});
+ const [sunlight,setSunlight]=useState(80),[outage,setOutage]=useState(false),[active,setActive]=useState(0),[manual,setManual]=useState(false),[progress,setProgress]=useState(0),[sceneReady,setSceneReady]=useState(false),[sceneEnabled,setSceneEnabled]=useState(false),[resetVersion,setResetVersion]=useState(0);
+ useEffect(()=>{const el=root.current;if(!el)return;const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){setSceneEnabled(true);observer.disconnect()}},{rootMargin:"300px"});observer.observe(el);return()=>observer.disconnect()},[]);
+ const markReady=useCallback(()=>setSceneReady(true),[]),markUnavailable=useCallback(()=>setSceneReady(false),[]);
  useEffect(()=>{let frame=0;const update=()=>{frame=0;const box=root.current?.getBoundingClientRect();if(!box)return;const p=clamp((innerHeight*.8-box.top)/(box.height+innerHeight*.1));setProgress(p);if(!manual)setActive(Math.min(3,Math.floor(p*4)))};const scroll=()=>{if(!frame)frame=requestAnimationFrame(update)};update();addEventListener('scroll',scroll,{passive:true});addEventListener('resize',scroll);return()=>{removeEventListener('scroll',scroll);removeEventListener('resize',scroll);cancelAnimationFrame(frame)}},[manual]);
  const load=.8,potentialSolar=night?0:sunlight*.04,solar=outage?Math.min(potentialSolar,load+1.8):potentialSolar,battery=Math.max(-load,Math.min(1.8,solar-load)),grid=outage?0:Math.max(0,solar-load-battery),lit=progress>.08;
  const solarCable=`M${at([-190,100,65])} C 382 320 315 346 394 370 S 480 314 548 340 S 588 347 ${at([-30,-65,20])}`;
  const batteryCable=`M${at([20,-65,20])} C 665 395 731 440 644 461 S 473 447 503 408 Q 518 393 ${at([65,130,95])}`;
  const lightCable=`M${at([80,-65,25])} C 748 355 705 389 777 415 S 938 381 940 434 S 850 506 ${at([360,30,15])}`;
  const gridCable=`M${at([470,-150,45])} C 1053 425 1116 421 1079 469 S 968 494 957 464 S 949 382 855 371 S 755 326 ${at([80,-90,40])}`;
- function reset(){setSunlight(80);setOutage(false);setManual(false);setActive(0);setTilt({x:0,y:0});if(night)onToggle()}
+ function reset(){setResetVersion(v=>v+1);setSunlight(80);setOutage(false);setManual(false);setActive(0);if(night)onToggle()}
  return <div ref={root} className={`energy-workshop ${night?'workshop-night':''} ${outage?'workshop-island':''}`}>
  <div className="workshop-topbar"><span className="micro">ENERGY STUDY / NO. 001</span><span className="micro">ONE SYSTEM. MANY POSSIBILITIES.</span><button onClick={reset} aria-label="Reset energy workshop"><RotateCcw size={13}/> RESET</button></div>
  <div className="workshop-main">
- <div className="workshop-scene" onPointerMove={e=>{if(e.pointerType==='mouse'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const r=e.currentTarget.getBoundingClientRect();setTilt({x:((e.clientY-r.top)/r.height-.5)*-3,y:((e.clientX-r.left)/r.width-.5)*3})}}} onPointerLeave={()=>setTilt({x:0,y:0})}>
+ <div className={`workshop-scene ${sceneReady?'has-real-scene':''}`}>
+ {sceneEnabled&&<EnergyScene night={night} sunlight={sunlight} outage={outage} solar={solar} battery={battery} grid={grid} lit={lit} active={active} resetVersion={resetVersion} onReady={markReady} onUnavailable={markUnavailable}/>}
+
  <div className="workshop-corner micro">A SMALL STUDY<br/>IN EVERYDAY ENERGY.</div>
- <svg viewBox="0 0 1200 650" className="workshop-svg" role="img" aria-label={`Isometric solar energy workshop. ${night?'At night, the battery supplies the inverter and a working lamp.':'Sunlight powers the solar panel, hybrid inverter, battery and lamp.'} ${outage?'The grid is isolated and the battery-backed system continues supplying essential loads.':''}`} style={{transform:`perspective(1400px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`}}>
+ <svg viewBox="0 0 1200 650" className="workshop-svg" role="img" aria-hidden={sceneReady} aria-label={`Isometric solar energy workshop. ${night?'At night, the battery supplies the inverter and a working lamp.':'Sunlight powers the solar panel, hybrid inverter, battery and lamp.'} ${outage?'The grid is isolated and the battery-backed system continues supplying essential loads.':''}`}>
  <defs><pattern id={`${id}hatch`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(25)"><path d="M0 0V5" stroke="#45483f" strokeWidth=".35" opacity=".4"/></pattern><pattern id={`${id}grain`} width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".4" fill="#575c4d" opacity=".28"/><circle cx="7" cy="7" r=".25" fill="#575c4d" opacity=".25"/></pattern><radialGradient id={`${id}glow`}><stop stopColor="#fff" stopOpacity="1"/><stop offset=".45" stopColor="#fff" stopOpacity=".5"/><stop offset="1" stopColor="#fff" stopOpacity="0"/></radialGradient><radialGradient id={`${id}shadow`}><stop stopColor="#3b3e34" stopOpacity=".13"/><stop offset="1" stopColor="#3b3e34" stopOpacity="0"/></radialGradient></defs>
  <g transform="translate(60 25) scale(.9)">
  <ellipse cx="600" cy="502" rx="560" ry="125" fill={`url(#${id}shadow)`}/>
@@ -47,7 +53,8 @@ export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  <Box x={-530} y={-210} z={-20} w={1050} d={490} h={20} fill="#e8eae2"/>
  <polygon points={pts([[-530,-210,0],[520,-210,0],[520,280,0],[-530,280,0]])} fill={`url(#${id}grain)`} stroke="none"/>
  <g stroke="#c8ccbe" strokeWidth=".45" opacity=".65">{Array.from({length:12},(_,i)=><path key={`x${i}`} d={segment([-510+i*90,-195,.5],[-510+i*90,265,.5])}/>)}{Array.from({length:6},(_,i)=><path key={`y${i}`} d={segment([-515,-190+i*90,.5],[505,-190+i*90,.5])}/>)}</g>
- <g className={`workshop-sun ${night?'sun-asleep':''}`} transform="translate(265 60)"><circle r="27" stroke="#50564a"/><ellipse rx="13" ry="27"/><ellipse rx="27" ry="9"/>{Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return <path key={i} d={`M${Math.cos(a)*34},${Math.sin(a)*34}L${Math.cos(a)*42},${Math.sin(a)*42}`}/>})}</g>
+ <g className={`workshop-sun ${night?'sun-asleep':''}`} style={{opacity:night?0:1}} transform="translate(265 60)"><circle r="27" stroke="#50564a"/><ellipse rx="13" ry="27"/><ellipse rx="27" ry="9"/>{Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return <path key={i} d={`M${Math.cos(a)*34},${Math.sin(a)*34}L${Math.cos(a)*42},${Math.sin(a)*42}`}/>})}</g>
+ <g className="workshop-moon" opacity={night?1:0} transform="translate(265 60)"><circle r="27" fill="#d2d3cf"/><circle cx="-8" cy="-7" r="6" fill="#aaada4"/><circle cx="10" cy="8" r="8" fill="#b9bdb2"/><circle cx="-10" cy="12" r="3" fill="#969c8c"/></g>
  <g className="workshop-rays" opacity={night?0:.15+sunlight/200}>{[0,1,2,3,4].map(i=><path key={i} d={`M${248+i*13} 110 L${270+i*29} ${170+i*4}`} pathLength="1"/>)}</g>
  <g>{[-425,-210].flatMap(x=>[-110,90].map(y=><path key={`${x}${y}`} d={segment([x,y,0],[x,y,92-y*.3])} strokeWidth="2"/>))}<path d={segment([-425,-110,10],[-210,90,10])+segment([-425,90,10],[-210,-110,10])} stroke="#a1a797"/></g>
  <g className={`workshop-device ${active===0?'device-active':''}`} onPointerEnter={()=>setActive(0)}><polygon points={pts([[-450,-130,129],[-190,-130,129],[-190,110,57],[-450,110,57]])} fill="#d9ddd2" strokeWidth="1.1"/><polygon points={pts([[-450,110,49],[-190,110,49],[-190,110,57],[-450,110,57]])} fill="#b7bead"/>{Array.from({length:48},(_,i)=>{const x=-441+(i%6)*42,y=-121+Math.floor(i/6)*28,z=90-y*.3;return <g key={i}><polygon points={pts([[x,y,z],[x+38,y,z],[x+38,y+24,z-7.2],[x,y+24,z-7.2]])} fill={`url(#${id}hatch)`} stroke="#686f5e" strokeWidth=".5"/>{[12,25].map(d=><path key={d} d={segment([x+d,y,z+.4],[x+d,y+24,z-6.8])} stroke="#f8f9f4" strokeWidth=".8"/>)}</g>})}<path d={segment([-448,-128,129],[-188,-128,129])+segment([-188,-128,129],[-188,112,57])} stroke="#fdfef9" strokeWidth="2"/></g>
@@ -91,10 +98,10 @@ export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  </g>
  </g>
  </svg>
- <span className="workshop-scale micro">FIG. 003 / THE ENERGY WORKSHOP</span><span className="workshop-move micro">MOVE TO EXPLORE ↗</span>
+ <span className="workshop-scale micro">FIG. 003 / THE ENERGY WORKSHOP</span><span className="workshop-move micro">DRAG TO EXPLORE ↔</span>
  </div>
  <aside className="workshop-controls"><div className="workshop-control-title micro">CHANGE THE CONDITIONS.<br/>WATCH THE CONNECTIONS.</div>
- <button className="workshop-mode" aria-pressed={night} onClick={onToggle}>{night?<Moon size={17} strokeWidth={1}/>:<Sun size={17} strokeWidth={1}/>}<span>{night?'After sunset':'In the sunlight'}<small>{night?'Stored energy takes over':'The roof is generating'}</small></span><span className="toggle"><i/></span></button>
+ <button className="workshop-mode" aria-pressed={night} onClick={onToggle}>{night?<Moon size={17} strokeWidth={1}/>:<Sun size={17} strokeWidth={1}/>}<span>{night?'Night mode':'Day mode'}<small>{night?'Stored energy takes over':'The roof is generating'}</small></span><span className="toggle"><i/></span></button>
  <div className="workshop-sunlight"><label htmlFor={`${id}sunlight`} className="micro">SUNLIGHT <span>{night?'0':sunlight}%</span></label><input id={`${id}sunlight`} aria-label="Sunlight intensity" type="range" min="0" max="100" step="5" value={night?0:sunlight} disabled={night} onChange={e=>setSunlight(Number(e.target.value))}/><div className="micro sunlight-range"><span>OVERCAST</span><span>CLEAR SKY</span></div></div>
  <button className={`workshop-outage ${outage?'is-active':''}`} aria-pressed={outage} onClick={()=>setOutage(!outage)}><Unplug size={15} strokeWidth={1}/><span>{outage?'Restore the grid':'Try a grid outage'}</span><ArrowUpRight size={14}/></button>
  <div className="workshop-readouts"><span className="micro">ILLUSTRATIVE / 4 KW ARRAY</span><dl><div><dt>Solar generation</dt><dd>{solar.toFixed(1)} <small>kW</small></dd></div><div><dt>Essential loads</dt><dd>{load.toFixed(1)} <small>kW</small></dd></div><div><dt>{battery>=0?'Charging storage':'From storage'}</dt><dd>{Math.abs(battery).toFixed(1)} <small>kW</small></dd></div><div><dt>{outage?'Grid connection':'Surplus to grid'}</dt><dd>{outage?'OFF':grid.toFixed(1)} {!outage&&<small>kW</small>}</dd></div></dl><p>{outage?'The grid is isolated. This battery-backed hybrid example keeps its essential circuits supplied.':night?'The sun has set. Energy stored earlier now supports the home.':'The roof supplies the home first, then storage. Any remaining surplus can flow to the grid.'}</p></div>

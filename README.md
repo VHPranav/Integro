@@ -23,7 +23,10 @@ The production static export is in `out/`.
 - Architectural home hero: 115 image-traced SVG lines followed by an organic ink reveal
 - Original exploded-module illustration with scroll-linked annotations
 - Architectural home illustration with an animated current path
-- Monochrome isometric energy workshop: projected solar equipment, looped cables, scroll-drawn energy routes, adjustable sunlight, day/night modes, grid-isolation demonstration and balanced illustrative power readouts
+- Real-time Three.js energy workshop with glass-faced cells, aluminium frames, equipment cabinets, spatial cables and a working spotlight
+- Day/night transitions swap a luminous sun for a textured moon, change physical lighting and reveal stars
+- Drag-to-inspect camera, adjustable sunlight, grid-isolation demonstration and balanced illustrative power readouts
+- The 3D renderer loads near the section; an SVG exhibit remains as a WebGL fallback
 - System selector, illustrative sizing calculator, accessible FAQs
 - Local downloadable project brief; no form submissions or personal-data storage
 - Responsive layouts and reduced-motion support
