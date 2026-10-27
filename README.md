@@ -1,6 +1,6 @@
 # Integro
 
-A responsive monochrome solar website built with Next.js App Router, TypeScript and Tailwind CSS 4. Original projected SVG geometry provides resolution-independent isometric panel rotation and exploded layers. No external visual assets or trackers are required.
+A responsive monochrome solar website built with Next.js App Router, TypeScript and Tailwind CSS 4. Original AI-generated architectural ink illustrations, image-aligned SVG tracing and an organic canvas mask create the blueprint introduction. Projected SVG geometry remains in the system selector. All artwork is served locally; no external asset services or trackers are required.
 
 ## Development
 
@@ -20,7 +20,9 @@ The production static export is in `out/`.
 
 ## Experience
 
-- Scroll-controlled solar panel intro and exploded module anatomy
+- Architectural home hero: 115 image-traced SVG lines followed by an organic ink reveal
+- Original exploded-module illustration with scroll-linked annotations
+- Architectural home illustration with an animated current path
 - Interactive hybrid energy diagram with day/night states
 - System selector, illustrative sizing calculator, accessible FAQs
 - Local downloadable project brief; no form submissions or personal-data storage
@@ -28,4 +30,4 @@ The production static export is in `out/`.
 
 ## Before a public business launch
 
-Supply verified Integro contact details and connect a real enquiry destination. Confirm the actual product range, panel construction, service commitments and business copy. Calculator assumptions are illustrative, visible in the UI, and are not a quote or generation guarantee. The hero uses live vector geometry instead of a video frame sequence so it stays crisp and lightweight; it can be replaced by commissioned frame assets later.
+Supply verified Integro contact details and connect a real enquiry destination. Confirm the actual product range, panel construction, service commitments and business copy. Calculator assumptions are illustrative, visible in the UI, and are not a quote or generation guarantee. The hero uses aligned SVG strokes and canvas ink masks instead of a video frame sequence. Original PNGs and generation prompts are preserved in `artwork-source/`; optimized transparent WebPs and trace coordinates live in `public/artwork/`. To regenerate the home trace after replacing the image, run `node scripts/trace-artwork.mjs` and update the version hash used by the component. Artwork represents illustrative concepts, not completed Integro projects.
