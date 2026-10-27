@@ -9,3 +9,6 @@ Original premium solar engineering website hero illustration. Exquisitely detail
 ## Panel anatomy
 
 Original premium monochrome solar website technical illustration. One solar photovoltaic module in an aligned isometric exploded assembly: glass, clear encapsulant film, detailed 6 by 10 photovoltaic cell array with fine busbars, rear protective sheet, aluminium frame with junction box and two connector cables. Parallel layers aligned horizontally, separated vertically. Orthographic isometric camera from above. Delicate dashed assembly guides. Exact black technical outlines, stippled and crosshatched neutral-grey shading. True transparent background. No text, numbers, logo, watermark or UI. Illustrative assembly; actual products vary.
+
+## Solar farm ink image
+Original generated illustration matching the existing Kerala home ink artwork: realistic rows of ground-mounted photovoltaic modules, detailed supports and cables, sparse palms and grass, fine engraved shading, subtle sun and rays. Monochrome on transparent background; no labels, text or 3D model rendering. Source: solar-farm-ink.png. Uses the shared BlueprintReveal renderer and solar-farm-trace.json.
