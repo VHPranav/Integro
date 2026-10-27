@@ -27,3 +27,9 @@
 @media(max-width:760px){.real-scene-label{font-size:5.5px;padding-bottom:7px}.real-scene-label:after{height:5px}.workshop-scene.has-real-scene{min-height:370px}.workshop-mode{min-height:42px}.workshop-move{font-size:5px}}
 @media(max-width:400px){.workshop-scene.has-real-scene{min-height:320px}.real-scene-label{font-size:4.5px}}
 @media(prefers-reduced-motion:reduce){.real-energy-scene>canvas{cursor:grab}}
+/* Keep the exhibit on the site's paper in both lighting modes. */
+.energy-workshop,.workshop-scene,.workshop-night .workshop-scene,.workshop-controls{background:var(--paper)}
+.energy-workshop{filter:none}
+.workshop-night .workshop-corner,.workshop-night .workshop-scale,.workshop-night .workshop-move{color:#7a7d75}
+.real-scene-night .real-scene-label{color:#72766d}
+.real-scene-night .real-scene-label.label-active{color:var(--ink)}
