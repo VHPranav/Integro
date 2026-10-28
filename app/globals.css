@@ -77,3 +77,41 @@
 /* Larger, more readable FAQs with breathing room at the outer edge. */
 .faq-section.section-pad{padding-right:clamp(40px,5vw,100px);column-gap:clamp(40px,5vw,100px)}.faq-item>button{font-family:var(--sans);font-size:clamp(16px,1.15vw,22px);line-height:1.4;letter-spacing:-.015em;padding:25px 0;gap:28px}.faq-item>button>svg{flex-shrink:0;width:20px;height:20px}.faq-item p{font-size:clamp(15px,1vw,18px);line-height:1.7;max-width:780px;padding-right:35px;margin-bottom:26px}@media(max-width:760px){.faq-section.section-pad{padding-right:24px;padding-left:20px}.faq-item>button{font-size:16px;padding:22px 0;gap:20px}.faq-item p{font-size:14px;padding-right:20px;line-height:1.65}}
 .faq-section.section-pad{grid-template-columns:minmax(0,.46fr) minmax(0,.54fr)}.faq-list{min-width:0}@media(max-width:760px){.faq-section.section-pad{grid-template-columns:minmax(0,1fr)}}
+
+/* Keep the complete energy journey in one desktop viewport. */
+.energy-section.section-pad{height:calc(100svh - 84px);min-height:640px;padding:clamp(18px,2.5vh,30px) 24px 14px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:clamp(10px,1.4vh,16px);overflow:hidden}
+.energy-section>.section-heading{margin:0;align-items:start}
+.energy-section>.section-heading h2{font-size:clamp(31px,3.1vw,52px)}
+.energy-section>.section-heading>p{font-size:12px;line-height:1.5;padding-top:2px}
+.energy-section>.technical-note{margin:0;font-size:8px;line-height:1.35}
+.energy-workshop{min-height:0;display:grid;grid-template-rows:38px minmax(0,1fr) auto}
+.workshop-topbar{height:38px}
+.workshop-main{min-height:0;height:auto;grid-template-columns:minmax(0,1fr) 230px}
+.workshop-scene{min-height:0;transition:background-color 1s ease}
+.workshop-controls{padding:14px 16px;overflow:hidden}
+.workshop-sunlight{padding:4px 0 12px}
+.workshop-sunlight input{margin:13px 0 8px}
+.workshop-readouts{padding-top:13px;margin-top:13px}
+.workshop-readouts dl{margin-top:7px}
+.workshop-readouts dl>div{padding:8px 0}
+.workshop-readouts dd{font-size:17px}
+.workshop-readouts>p{font-size:8px;line-height:1.45;margin-top:10px}
+.workshop-outage{padding:10px 9px}
+.workshop-story{grid-template-columns:35% 65%}
+.workshop-chapters{grid-template-columns:repeat(4,1fr)}
+.workshop-chapters button,.workshop-chapters button:nth-child(n){border-bottom:0;border-right:1px solid var(--line);padding:13px 12px;font-size:9px}
+.workshop-chapters button:last-child{border-right:0}
+.workshop-inspector{padding:14px 20px;align-items:center}
+.workshop-inspector h3{font-size:21px}
+.workshop-inspector p{font-size:10px}
+.workshop-mode-overlay{position:absolute;z-index:6;top:16px;right:16px;width:auto;min-width:190px;min-height:0;padding:10px 12px;border:1px solid #cfd1c8;background:#f8f8f3e8;backdrop-filter:blur(8px);box-shadow:0 8px 28px #2528200c}
+.workshop-mode-overlay>span:nth-child(2){font-size:11px}
+.workshop-mode-overlay small{font-size:8px;margin-top:2px}
+.workshop-mode-overlay .toggle{margin-left:8px}
+.workshop-night .workshop-scene{background:#151614}
+.workshop-night .workshop-mode-overlay{background:#20211ff0;border-color:#4e514a;color:#f1f1eb}
+.workshop-night .workshop-mode-overlay small{color:#aaaDA4}
+.workshop-night .real-scene-label{color:#b8bbb3}
+.workshop-night .real-scene-label.label-active{color:#f1f1eb}
+@media(max-width:1050px) and (min-width:761px){.workshop-main{grid-template-columns:minmax(0,1fr) 205px}.workshop-controls{padding:12px}.workshop-inspector{grid-template-columns:1fr 1.2fr}.workshop-inspector h3{font-size:18px}.workshop-inspector p{font-size:9px}.workshop-mode-overlay{min-width:175px}}
+@media(max-width:760px){.energy-section.section-pad{height:auto;min-height:0;padding:50px 20px 30px;display:block;overflow:visible}.energy-section>.section-heading{margin-bottom:28px}.energy-section>.section-heading h2{font-size:34px}.energy-workshop{display:block}.workshop-main{display:block}.workshop-scene{min-height:390px}.workshop-mode-overlay{top:12px;right:12px;min-width:0;width:164px;padding:9px 10px}.workshop-mode-overlay small{display:none}.workshop-controls{overflow:visible}.workshop-story{grid-template-columns:1fr}.energy-section>.technical-note{font-size:9px;margin-top:14px}}
