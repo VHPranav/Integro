@@ -3,8 +3,7 @@ import {MotionText} from './motion-text';
 
 import {useCallback,useEffect,useId,useRef,useState} from 'react';
 import {ArrowUpRight, Moon, RotateCcw, Sun, Unplug} from 'lucide-react';
-import dynamic from 'next/dynamic';
-const EnergyScene=dynamic(()=>import('./energy-scene'),{ssr:false});
+import {EnergyIllustration} from './energy-illustration';
 
 type Point=[number,number,number];
 const project=([x,y,z]:Point)=>[590+(x-y)*.74,355+(x+y)*.27-z];
@@ -29,34 +28,20 @@ function Cable({d,id,active,reverse=false,progress=1}:{d:string;id:string;active
 export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  const id=useId().replace(/:/g,'');
  const root=useRef<HTMLDivElement>(null);
- const [sunlight,setSunlight]=useState(80),[outage,setOutage]=useState(false),[active,setActive]=useState(0),[manual,setManual]=useState(false),[progress,setProgress]=useState(0),[sceneReady,setSceneReady]=useState(false),[sceneEnabled,setSceneEnabled]=useState(false),[resetVersion,setResetVersion]=useState(0);
- useEffect(()=>{const el=root.current;if(!el)return;const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){setSceneEnabled(true);observer.disconnect()}},{rootMargin:"300px"});observer.observe(el);return()=>observer.disconnect()},[]);
- const markReady=useCallback(()=>setSceneReady(true),[]),markUnavailable=useCallback(()=>setSceneReady(false),[]);
+ const [sunlight,setSunlight]=useState(80),[outage,setOutage]=useState(false),[active,setActive]=useState(0),[manual,setManual]=useState(false),[progress,setProgress]=useState(0);
  useEffect(()=>{let frame=0;const update=()=>{frame=0;const box=root.current?.getBoundingClientRect();if(!box)return;const p=clamp((innerHeight*.8-box.top)/(box.height+innerHeight*.1));setProgress(p);if(!manual)setActive(Math.min(3,Math.floor(p*4)))};const scroll=()=>{if(!frame)frame=requestAnimationFrame(update)};update();addEventListener('scroll',scroll,{passive:true});addEventListener('resize',scroll);return()=>{removeEventListener('scroll',scroll);removeEventListener('resize',scroll);cancelAnimationFrame(frame)}},[manual]);
  const load=.8,potentialSolar=night?0:sunlight*.04,solar=outage?Math.min(potentialSolar,load+1.8):potentialSolar,battery=Math.max(-load,Math.min(1.8,solar-load)),grid=outage?0:Math.max(0,solar-load-battery),lit=progress>.08;
  const solarCable=`M${at([-190,100,65])} C 382 320 315 346 394 370 S 480 314 548 340 S 588 347 ${at([-30,-65,20])}`;
  const batteryCable=`M${at([20,-65,20])} C 665 395 731 440 644 461 S 473 447 503 408 Q 518 393 ${at([65,130,95])}`;
  const lightCable=`M${at([80,-65,25])} C 748 355 705 389 777 415 S 938 381 940 434 S 850 506 ${at([360,30,15])}`;
  const gridCable=`M${at([470,-150,45])} C 1053 425 1116 421 1079 469 S 968 494 957 464 S 949 382 855 371 S 755 326 ${at([80,-90,40])}`;
- function reset(){setResetVersion(v=>v+1);setSunlight(80);setOutage(false);setManual(false);setActive(0);if(night)onToggle()}
+ function reset(){setSunlight(80);setOutage(false);setManual(false);setActive(0);if(night)onToggle()}
  return <div ref={root} className={`energy-workshop ${night?'workshop-night':''} ${outage?'workshop-island':''}`}>
  <div className="workshop-main">
- <div className={`workshop-scene ${sceneReady?'has-real-scene':''}`}>
- {sceneEnabled&&<EnergyScene night={night} sunlight={sunlight} outage={outage} solar={solar} battery={battery} grid={grid} lit={lit} active={active} resetVersion={resetVersion} onReady={markReady} onUnavailable={markUnavailable}/>}
+ <div className="workshop-scene">
+ <EnergyIllustration night={night} sunlight={sunlight} outage={outage} active={active} lit={lit}/>
  <button className="workshop-mode workshop-mode-overlay" aria-pressed={night} onClick={onToggle}>{night?<Moon size={17} strokeWidth={1}/>:<Sun size={17} strokeWidth={1}/>}<span>{night?'Night mode':'Day mode'}<small>{night?'Stored energy takes over':'The roof is generating'}</small></span><span className="toggle"><i/></span></button>
- <svg viewBox="0 0 1000 650" className={`workshop-fallback-home ${night?'fallback-night':''}`} role="img" aria-hidden={sceneReady} aria-label="Cutaway home with solar panels, connected inverter, storage battery and illuminated windows in night mode">
-  <g className="fallback-ground"><path d="M90 500 525 260 925 450 490 620z"/><path d="m135 495 385-210m-300 265 385-210M245 550l390-210M355 590l390-210M145 475l380 180m-320-210 380 180m-320-210 380 180"/></g>
-  <g className="fallback-house"><path className="fallback-side" d="m285 330 220-120v220L285 550z"/><path className="fallback-front" d="m505 210 235 112v210L505 430z"/><path className="fallback-roof" d="m270 324 228-146 254 119-247 127z"/><path className="fallback-eave" d="m260 328 245-157 258 121-11 14-247-117-233 148z"/>
-   <path className="fallback-window" d="m535 265 74 35v83l-74-35zM634 312l76 36v82l-76-36zM322 352l62-34v73l-62 34z"/><path className="fallback-frame" d="m572 283v83m99-44v82M535 306l74 35m25 5 76 36M352 335v75m-30-39 62-34"/><path className="fallback-door" d="m445 383 45-24v112l-45 24zM462 430v7"/><path className="fallback-balcony" d="m510 211 229 111m-230-93 229 109m-194-110v38m54-13v38m54-13v38m54-13v38"/>
-   <g className="fallback-panels"><path d="m321 290 174-112 197 92-185 112z"/><path d="m366 286 45-29m-10 46 45-29m-10 46 45-29m-10 46 45-29m-160-55 194 91m-166-109 194 91m-166-108 194 91"/></g>
-  </g>
-  <g className="fallback-equipment"><path d="m782 432 66-35 65 30-67 37z"/><path d="m782 432v90l64 36v-94zM846 458v100l67-34v-97z"/><path d="m797 447 45-24m-38 102v-54l31 17v55zM864 469l34-17v31l-34 17z"/></g>
-  <g className="fallback-wires"><path d="m488 284 166 78q20 11 35 21l95 52M812 519l-70-25q-24-8-48-16l-64-25"/><path className="fallback-flow" d="m488 284 166 78q20 11 35 21l95 52M812 519l-70-25q-24-8-48-16l-64-25"/></g>
-  <g className="fallback-plants"><path d="M245 505v-90m0 38q-35-37-55-20m55 2q29-38 53-20m-53 4q-4-47-30-52m380 130v-63m0 30q-22-25-39-14m39 1q22-30 40-17"/></g>
- </svg>
-
- 
- <svg viewBox="0 0 1200 650" className="workshop-svg" role="img" aria-hidden={sceneReady} aria-label={`Isometric solar energy workshop. ${night?'At night, the battery supplies the inverter and a working lamp.':'Sunlight powers the solar panel, hybrid inverter, battery and lamp.'} ${outage?'The grid is isolated and the battery-backed system continues supplying essential loads.':''}`}>
+ <svg viewBox="0 0 1200 650" className="workshop-svg" role="img" aria-hidden="true">
  <defs><pattern id={`${id}hatch`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(25)"><path d="M0 0V5" stroke="#45483f" strokeWidth=".35" opacity=".4"/></pattern><pattern id={`${id}grain`} width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".4" fill="#575c4d" opacity=".28"/><circle cx="7" cy="7" r=".25" fill="#575c4d" opacity=".25"/></pattern><radialGradient id={`${id}glow`}><stop stopColor="#fff" stopOpacity="1"/><stop offset=".45" stopColor="#fff" stopOpacity=".5"/><stop offset="1" stopColor="#fff" stopOpacity="0"/></radialGradient><radialGradient id={`${id}shadow`}><stop stopColor="#3b3e34" stopOpacity=".13"/><stop offset="1" stopColor="#3b3e34" stopOpacity="0"/></radialGradient></defs>
  <g transform="translate(60 25) scale(.9)">
  <ellipse cx="600" cy="502" rx="560" ry="125" fill={`url(#${id}shadow)`}/>
@@ -109,7 +94,7 @@ export function EnergyFlow({night,onToggle}:{night:boolean;onToggle:()=>void}){
  </g>
  </g>
  </svg>
- <button className="workshop-reset" onClick={reset} aria-label="Reset energy workshop"><RotateCcw size={14}/></button><span className="workshop-move micro">DRAG TO ROTATE</span>
+ <button className="workshop-reset" onClick={reset} aria-label="Reset energy journey"><RotateCcw size={14}/></button><span className="workshop-move micro">FOLLOW THE CURRENT</span>
  </div>
  <aside className="workshop-controls">
  <div className="energy-aside-heading"><MotionText as="h2">From a ray of light.<br/>To <span className="serif">a way of life.</span></MotionText><MotionText as="p" kind="copy">Follow the energy from rooftop sunlight to the light inside your home.</MotionText></div>

@@ -163,3 +163,29 @@
 .workshop-night .workshop-mode-overlay small{color:#b5b7b0}
 @media(max-width:1000px) and (min-width:761px){.workshop-main{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.workshop-controls{padding:17px;gap:10px}.energy-aside-heading h2{font-size:clamp(28px,3.4vw,36px)}.energy-aside-heading>p{font-size:11px}.workshop-inspector p{font-size:10px}}
 @media(max-width:760px){.energy-section.section-pad{height:auto;min-height:0;padding:35px 15px 25px;overflow:visible}.energy-workshop{height:auto}.workshop-main{height:auto;display:flex;flex-direction:column}.workshop-scene{height:55svh;min-height:340px;max-height:520px;border-bottom:1px solid var(--line)}.workshop-controls{overflow:visible;border-left:0;padding:24px 18px;gap:16px}.energy-aside-heading h2{font-size:34px}.energy-aside-heading>p{font-size:12px}.workshop-mode-overlay{top:12px;right:12px;min-width:0;width:164px;padding:9px 10px}.workshop-mode-overlay small{display:none}.workshop-reset{right:12px;bottom:12px}.workshop-move{left:12px;bottom:21px}.workshop-inspector h3{font-size:23px}.workshop-readouts dl>div{padding:10px 0}.workshop-readouts dd{font-size:20px}}
+.energy-house-illustration{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;background:transparent}
+.energy-house-illustration>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .9s ease;user-select:none;-webkit-user-drag:none}
+.energy-house-illustration>img.energy-art-night{opacity:0}
+.energy-house-illustration.is-night>img.energy-art-day{opacity:0}
+.energy-house-illustration.is-night>img.energy-art-night{opacity:1}
+.energy-house-illustration>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.energy-wire{fill:none;stroke:#333731;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.22;transition:opacity .6s ease,stroke .6s ease}
+.energy-wire.is-revealed{opacity:.86}
+.energy-wire-core{fill:none;stroke:#f8f8f3;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:2 12;opacity:.7;animation:energy-flow-dash 1.5s linear infinite}
+.energy-storage-wire,.energy-storage-core{opacity:.6}
+.energy-home-wire,.energy-home-core{opacity:.32}
+.energy-battery{fill:#f6f6f0;stroke:#343832;stroke-width:3;transition:fill .8s ease,stroke .8s ease}
+.energy-battery path{fill:none;stroke-width:2.5}.energy-battery text{fill:#343832;stroke:none;font:12px 'Courier New',monospace;letter-spacing:1px}
+.energy-current{fill:#fff;stroke:#2f332e;stroke-width:2;filter:drop-shadow(0 0 4px #fff)}
+.energy-sun,.energy-moon{opacity:1;transition:opacity .7s ease;fill:#f8f8f3;stroke:#373b35;stroke-width:2.5}
+.energy-sun path,.energy-moon path{fill:none}.energy-sun.is-away,.energy-moon:not(.is-visible){opacity:0}
+.energy-moon.is-visible{opacity:1}
+.energy-house-illustration.is-night .energy-wire{stroke:#f2f2ec;opacity:.7}
+.energy-house-illustration.is-night .energy-wire-core{stroke:#282a27}
+.energy-house-illustration.is-night .energy-battery{fill:#20211e;stroke:#e6e7e1}
+.energy-house-illustration.is-night .energy-battery text{fill:#e6e7e1}
+.energy-house-illustration.is-night .energy-current{fill:#fff;stroke:#242521}
+.energy-house-illustration.is-night .energy-sun{opacity:0}.energy-house-illustration.is-night .energy-moon{opacity:1}
+.energy-sunlight-indicator{position:absolute;left:48%;top:34%;width:32px;height:32px;border-radius:50%;background:#fff;opacity:calc(var(--sunlight) / 100 * .12);filter:blur(9px);pointer-events:none}
+@keyframes energy-flow-dash{to{stroke-dashoffset:-28}}
+@media(prefers-reduced-motion:reduce){.energy-sun animateMotion,.energy-moon animateMotion{display:none}.energy-wire-core{animation:none}}
