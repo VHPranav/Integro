@@ -19,5 +19,5 @@ export function CtaArtwork(){
   window.addEventListener('resize',schedule);
   return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule)};
  },[]);
- return <div ref={host} className="contact-art"><BlueprintReveal scrub progress={progress} src="/artwork/solar-cta-ink-v2.webp" traceSrc="/artwork/solar-cta-ink-v2-trace.json" alt="Architectural ink drawing of a Kerala solar home"/></div>;
+ return <div ref={host} className="contact-art"><BlueprintReveal scrub progress={progress} src="/artwork/solar-cta-watercolor-cutout.webp" traceSrc="" alt="Watercolor Kerala courtyard home with terracotta roof and blue solar panels"/></div>;
 }

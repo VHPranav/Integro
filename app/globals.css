@@ -253,3 +253,271 @@ button{font-size:14px}
 .hero-discover{font-size:12px;line-height:1.4}
 @media(max-width:1050px) and (min-width:761px){.header nav>a,.header .nav-cta{font-size:12px;min-width:100px;padding-inline:12px}}
 @media(max-width:760px){.header nav>a,.header .nav-cta{font-size:14px;min-width:0}.button,.brief-dialog .button,.contact-intro .button,.contact-bottom .button{font-size:14px}.text-link{font-size:13px}.system-tabs button{font-size:14px;padding:16px 9px}.footer-nav a,.footer-nav button{font-size:14px}.site-footer .footer-bottom{font-size:11px;row-gap:16px}.footer-credit{order:3;flex-basis:100%}.hero-discover{font-size:12px}}
+
+/* Warm white, tropical watercolour and a restrained green/gold palette. */
+:root{--paper:#fffefa;--ink:#233d32;--muted:#69756b;--line:#d8ded0;--soft:#edf2e7;--solar-gold:#c89b4d;--solar-blue:#587b91}
+body:after{opacity:.025}
+p{color:var(--muted)}
+.blueprint-reveal{mix-blend-mode:multiply}
+.blueprint-reveal>canvas.watercolor-outline{z-index:3;pointer-events:none}
+.blueprint-scan{background:var(--solar-gold)}
+.blueprint-scan:before{content:none}
+.calc-visual{background:#f6f7ee}
+.calc-visual>img{filter:none}
+.header .nav-cta,.button.dark{background:#2c6046;color:#fffefa;border-color:#2c6046}
+.header .nav-cta:hover,.button.dark:hover{background:#214b36;color:#fffefa}
+.button.dark:focus-visible{outline-color:var(--solar-gold)}
+.text-link:hover,.footer-credit:hover{color:var(--solar-gold)}
+.system-tabs button[aria-selected=true]{background:#2c6046;color:#fffefa}
+.calc-slider-fill,.calc-potential-fill{background:#2c6046}
+.calc-slider-thumb-line{border-color:#2c6046}
+.calc-callout-dot{background:var(--solar-gold)}
+.site-footer{background:#183c2d}
+.process-blueprint-grid article:hover{background:#eef3e8}
+.hotspot-panel{left:48%;top:49%}
+@media(prefers-reduced-motion:reduce){.blueprint-reveal>canvas.watercolor-outline{display:none}}
+
+/* Transparent watercolor cutouts use the actual section background. */
+.blueprint-reveal{mix-blend-mode:normal}
+.calc-visual>img,.home-ink-stage>img{mix-blend-mode:normal}
+.hero-architecture .hotspot-panel{left:53%;top:34%}
+@media(max-width:760px){.hero-architecture{transform:none;width:100%}}
+.solar-farm-section .intro-main h2{font-weight:600}
+
+/* Supplied Integro logo and dedicated solar capacity pages. */
+.brand{display:inline-flex;align-items:center;line-height:0;font-size:0;letter-spacing:0}
+.brand img{display:block;width:clamp(148px,17vw,198px);height:auto;object-fit:contain}
+.footer-brand-row .brand img{width:190px}
+.brief-dialog .brand img{width:158px}
+.solar-page-header{position:sticky;top:6px;margin:0;z-index:100;padding:0 20px;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.solar-page-header>a{padding:0}
+.solar-page-header nav{min-width:0;gap:0}
+.solar-page-header nav>a{font-size:11px;min-width:112px;padding:0 16px;justify-content:center}
+.solar-page-header .menu-button{display:none}
+.solar-page-footer{padding:36px 5.2% 20px;background:#183c2d;color:#f8f8f3}
+.solar-page-footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid #ffffff30}
+.solar-page-footer-top .brand img{width:190px}
+.footer-brand-row>a,.solar-page-footer-top>a{display:inline-flex;padding:6px 10px;background:#fffefa}
+.solar-page-footer-top p{font-size:13px;color:#e4eadf}
+.solar-page-footer-links{display:flex;gap:36px;padding:22px 0;border-bottom:1px solid #ffffff30}
+.solar-page-footer-links a{display:inline-flex;align-items:center;gap:14px;font-size:14px}
+.solar-page-footer .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:18px;color:#e4eadf;font-size:10px}
+.solar-page-footer .footer-credit{display:inline-flex;align-items:center;gap:8px}
+.solar-guide-page,.solar-detail-page,.solar-enquiry-page{color:var(--ink)}
+.solar-guide-hero{position:relative;min-height:min(770px,calc(100svh - 58px));display:grid;grid-template-columns:48% 52%;align-items:center;overflow:hidden;padding:60px 5.2% 82px;border-bottom:1px solid var(--line)}
+.solar-guide-copy{position:relative;z-index:2;max-width:590px}
+.solar-guide-kicker{display:inline-flex;align-items:center;gap:9px;font:10px/1.4 'Courier New',monospace;letter-spacing:.08em;text-transform:uppercase;color:#385f51}
+.solar-guide-copy h1,.solar-detail-copy h1,.solar-enquiry-copy h1{margin:28px 0 22px;font-size:clamp(48px,6.2vw,88px);line-height:.97;letter-spacing:-.07em;font-weight:600}
+.solar-guide-copy h1 span,.solar-detail-copy h1 em,.solar-page-heading h2 em,.solar-brand-section h2 em,.solar-guide-cta h2 em,.solar-enquiry-copy h1 em{font-family:var(--serif);font-weight:400}
+.solar-guide-copy>p,.solar-detail-copy>p,.solar-enquiry-copy>p{max-width:470px;font-size:16px;line-height:1.7;margin-bottom:27px}
+.solar-guide-art{align-self:stretch;min-height:460px;display:flex;align-items:center;justify-content:center;margin-right:-7%;}
+.solar-guide-art img{width:119%;height:100%;max-height:610px;object-fit:contain;filter:drop-shadow(0 22px 18px #25453313)}
+.solar-guide-hero-caption{position:absolute;left:5.2%;right:5.2%;bottom:18px;display:flex;justify-content:space-between;color:var(--muted);font-size:9px}
+.capacity-guide{padding:105px 5.2% 88px;background:#fffefa}
+.solar-page-heading{display:grid;grid-template-columns:1fr 1fr;column-gap:30px;align-items:end;margin-bottom:44px}
+.solar-page-heading>.solar-guide-kicker{grid-column:1/-1;margin-bottom:22px}
+.solar-page-heading h2,.solar-brand-section h2,.solar-guide-cta h2{font-size:clamp(38px,4.7vw,68px);line-height:1;letter-spacing:-.06em;font-weight:600}
+.solar-page-heading>p{max-width:420px;margin:0 0 5px;font-size:14px}
+.capacity-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.capacity-card{--capacity-accent:#245d4a;min-height:345px;display:flex;flex-direction:column;padding:20px 19px 17px;border:1px solid #d6ddd2;background:#f5f8f0;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.capacity-card-2{--capacity-accent:#176e8d;background:#f1f7f8;border-color:#d3e0e4}
+.capacity-card-3{--capacity-accent:#7662a1;background:#f6f4f8;border-color:#ded9e6}
+.capacity-card-4{--capacity-accent:#b97822;background:#faf6ec;border-color:#e7ddc5}
+.capacity-card:hover{transform:translateY(-5px);box-shadow:0 15px 32px #24372c13;border-color:var(--capacity-accent)}
+.capacity-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--capacity-accent)}
+.capacity-card-top .micro{font-size:8px;letter-spacing:.06em}
+.capacity-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--capacity-accent);color:#fff}
+.capacity-number{margin:23px 0 2px;color:var(--capacity-accent);font-size:clamp(47px,5.2vw,70px);line-height:.9;letter-spacing:-.07em;font-weight:600}
+.capacity-number small{font-size:.43em;letter-spacing:-.035em}
+.capacity-range{font-size:13px;font-weight:600;color:var(--ink)}
+.capacity-card>p{font-size:13px;line-height:1.55;margin:15px 0 17px;min-height:61px}
+.capacity-price{font-size:14px;font-weight:600;color:var(--capacity-accent)}
+.capacity-card-link{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:17px;border-top:1px solid color-mix(in srgb,var(--capacity-accent) 23%,transparent);font-size:13px;font-weight:600;color:var(--capacity-accent)}
+.capacity-custom{margin-top:20px;padding:27px 30px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#eaf1e6;border:1px solid #d6e0d2}
+.capacity-custom h3{margin:8px 0;font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-.045em}
+.capacity-custom p{font-size:13px;max-width:560px}
+.capacity-custom .button{flex-shrink:0}
+.solar-disclaimer{max-width:820px;margin:20px 0 0;font-size:11px;line-height:1.6}
+.solar-support-section{padding:96px 5.2%;border-top:1px solid var(--line)}
+.solar-support-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.solar-benefit-list,.solar-finance-card{padding:30px;border:1px solid var(--line);background:#fffefa}
+.solar-benefit-list h3,.solar-finance-card h3{font-size:clamp(23px,2.5vw,34px);font-weight:600;letter-spacing:-.04em;margin-bottom:20px}
+.solar-benefit-list p{display:flex;align-items:center;gap:13px;padding:14px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink)}
+.solar-benefit-list p svg{flex-shrink:0;color:#258057}
+.solar-finance-card{background:#f0f6f8;border-color:#d7e3e6}
+.solar-finance-card h3{margin:20px 0 12px}
+.solar-finance-card>p{font-size:13px;line-height:1.65}
+.bank-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.bank-list span{padding:9px 12px;border:1px solid #cbd9dc;background:#fffefa;color:#244f62;font-size:12px;font-weight:600}
+.solar-brand-section{padding:86px 5.2%;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;border-top:1px solid var(--line);background:#f2f4eb}
+.solar-brand-section h2{margin:20px 0}
+.solar-brand-section>div:first-child>p{max-width:430px;font-size:13px}
+.equipment-brand-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.equipment-brand-list span{min-height:72px;display:grid;place-items:center;padding:14px;border:1px solid #d7ddcf;background:#fffefa;color:#24463a;font-size:clamp(16px,2vw,23px);font-weight:600;letter-spacing:-.03em}
+.solar-guide-cta{padding:64px 5.2%;display:flex;align-items:center;justify-content:space-between;gap:30px;background:#1e4435;color:#f8f8f3}
+.solar-guide-cta .solar-guide-kicker{color:#c8d9bf}
+.solar-guide-cta .button{flex-shrink:0}
+.button.light{background:#f8f8f3;color:#203f32}
+.solar-detail-page{padding:0 5.2% 90px}
+.solar-breadcrumb{height:56px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px}
+.solar-breadcrumb a,.solar-back-link{display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.solar-detail-hero{min-height:520px;display:grid;grid-template-columns:48% 52%;align-items:center;border:1px solid var(--line);background:#fffefa;overflow:hidden}
+.solar-detail-copy{position:relative;z-index:2;padding:50px 0 50px 8%}
+.solar-detail-copy .solar-guide-kicker svg{width:14px}
+.solar-detail-copy h1{font-size:clamp(44px,5vw,72px);margin:22px 0 18px}
+.solar-detail-art{height:100%;min-height:480px;position:relative;display:flex;align-items:center;justify-content:center;background:#f1f4eb}
+.solar-detail-art img{width:112%;height:100%;object-fit:contain}
+.solar-detail-badge{position:absolute;right:7%;bottom:8%;display:flex;flex-direction:column;gap:5px;padding:14px 19px;background:#fffefa;border:1px solid var(--line);box-shadow:0 10px 30px #24372c12}
+.solar-detail-badge>span,.solar-detail-size span{font:8px 'Courier New',monospace;letter-spacing:.07em;color:var(--muted)}
+.solar-detail-badge strong{font-size:40px;line-height:1;color:#255a46;letter-spacing:-.06em}
+.solar-detail-badge small{font-size:16px;letter-spacing:0}
+.solar-detail-5kw .solar-detail-art{background:#edf4f4}.solar-detail-8kw .solar-detail-art{background:#f1edf5}.solar-detail-10kw .solar-detail-art{background:#f5f0e5}
+.solar-detail-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px;border:1px solid var(--line)}
+.solar-detail-facts>div{min-height:155px;display:flex;flex-direction:column;gap:10px;padding:20px;border-right:1px solid var(--line)}
+.solar-detail-facts>div:last-child{border-right:0}
+.solar-detail-facts .solar-guide-kicker{font-size:8px}
+.solar-detail-facts strong{font-size:clamp(18px,2vw,25px);line-height:1.12;letter-spacing:-.04em}
+.solar-detail-facts small{margin-top:auto;font-size:10px;line-height:1.45;color:var(--muted)}
+.solar-detail-explain{padding:85px 3% 58px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.solar-detail-explain h2{font-size:clamp(35px,4vw,56px);font-weight:600;margin-top:18px}
+.solar-detail-checks p{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink)}
+.solar-detail-checks svg{color:#258057;flex-shrink:0}
+.solar-detail-explain .solar-disclaimer{grid-column:2;margin-top:2px}
+.solar-detail-pagination{padding:22px 3%;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px}
+.solar-detail-pagination>a{display:flex;align-items:center;gap:13px;font-size:14px;font-weight:600}
+.solar-detail-pagination>a:last-child{text-align:right}
+.solar-detail-pagination span{display:grid;gap:7px}
+.solar-detail-pagination small{font:8px 'Courier New',monospace;letter-spacing:.06em;color:var(--muted)}
+.solar-enquiry-page{max-width:1280px;margin:0 auto;padding:27px 5.2% 90px}
+.solar-back-link{font-size:12px;margin-bottom:25px}
+.solar-enquiry-card{min-height:590px;display:grid;grid-template-columns:60% 40%;border:1px solid var(--line);background:#fffefa}
+.solar-enquiry-copy{padding:clamp(30px,6vw,76px)}
+.solar-enquiry-copy h1{max-width:650px;font-size:clamp(48px,6vw,82px)}
+.solar-enquiry-copy>p{max-width:570px}
+.solar-enquiry-points{display:grid;gap:10px;margin:22px 0 26px}
+.solar-enquiry-points p{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:13px}
+.solar-enquiry-points p:before{content:'+';color:#26734f;font-size:19px}
+.solar-contact-actions{display:flex;flex-wrap:wrap;gap:10px}
+.solar-contact-actions .button{min-height:50px;font-size:13px}
+.solar-whatsapp{border:1px solid #bed5c5;background:#edf5ee;color:#214e36}
+.solar-secondary-contact{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:12px}
+.solar-enquiry-side{padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;justify-content:center;background:#edf3e9}
+.solar-enquiry-side h2{font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.045em;margin:20px 0 12px}
+.solar-enquiry-side>p{font-size:13px;line-height:1.6}
+.solar-enquiry-size{display:flex;flex-direction:column;gap:7px;padding-top:35px;margin-top:35px;border-top:1px solid #cbd8c5}
+.solar-enquiry-size>span{font:8px 'Courier New',monospace;letter-spacing:.07em;color:#546d58}
+.solar-enquiry-size strong{font-size:82px;line-height:.95;letter-spacing:-.07em;color:#245b42}
+.solar-enquiry-size strong small{font-size:.35em;letter-spacing:0}
+.solar-enquiry-size strong i{font-size:.5em;font-style:normal}
+.solar-enquiry-note{margin-top:16px;font-size:11px}
+.calc-above-ten{max-width:410px;padding:18px 20px;border:1px solid #c9d7c7;background:#f0f5ed}
+.calc-above-ten>strong{font-size:20px;letter-spacing:-.035em}
+.calc-above-ten>p{font-size:12px;line-height:1.5;margin:8px 0 2px}
+.calc-above-ten .text-link{margin-top:8px}
+.header nav>a,.header .nav-cta,.solar-page-header nav>a{font-size:13px}
+
+/* Keep the added routes inside the homepage's paper-and-drafting visual system. */
+.solar-guide-hero{min-height:calc(100svh - 64px);grid-template-columns:44% 56%;margin:0 25px;border:1px solid var(--line);border-top:0;background:var(--paper);padding:35px 3% 54px}
+.solar-guide-hero:before{content:"";position:absolute;inset:9px;border:1px solid var(--line);pointer-events:none}
+.solar-guide-hero:after{content:"";position:absolute;top:16px;left:25px;right:25px;height:8px;opacity:.55;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 7px);pointer-events:none}
+.solar-guide-copy{padding:18px 0 28px 2%;max-width:600px}
+.solar-guide-copy h1{font-size:clamp(46px,5.5vw,78px);line-height:.99;color:var(--ink);margin:24px 0 18px;letter-spacing:-.065em}
+.solar-guide-copy h1 span{display:block;color:#486d57}
+.solar-guide-copy>p{max-width:455px;font-size:14px;line-height:1.55;margin-bottom:20px}
+.solar-guide-art{z-index:1;min-height:0;height:min(67svh,650px);margin:0 -3% 0 -5%;}
+.solar-guide-art .blueprint-reveal{width:100%;max-width:700px}
+.solar-guide-hero-caption{left:4%;right:4%;bottom:17px;font-size:8px}
+.capacity-guide,.solar-support-section,.solar-brand-section{background:var(--paper)}
+.capacity-guide{padding-top:82px;padding-bottom:76px}
+.solar-page-heading{margin-bottom:36px}
+.solar-page-heading h2,.solar-brand-section h2,.solar-guide-cta h2{font-size:clamp(36px,4.2vw,59px);line-height:1.02;letter-spacing:-.055em}
+.solar-page-heading>p{font-size:13px;line-height:1.55}
+.capacity-card-grid{gap:0;border:1px solid var(--line);background:var(--paper)}
+.capacity-card,.capacity-card-2,.capacity-card-3,.capacity-card-4{--capacity-accent:#315743;min-height:320px;padding:19px 17px 15px;border:0;border-right:1px solid var(--line);background:var(--paper);box-shadow:none}
+.capacity-card:last-child{border-right:0}
+.capacity-card:hover{transform:translateY(-2px);background:var(--soft);box-shadow:none;border-color:var(--line)}
+.capacity-icon{width:27px;height:27px;border-radius:0;border:1px solid var(--line);background:transparent;color:#3b654d}
+.capacity-card-top .micro{font-size:8px;color:var(--muted)}
+.capacity-number{font-size:clamp(44px,4.5vw,61px);margin:21px 0 8px;color:var(--ink);font-weight:500}
+.capacity-range{font:10px 'Courier New',monospace;color:var(--muted);letter-spacing:.01em}
+.capacity-card>p{font-size:12px;line-height:1.55;min-height:55px;margin:14px 0}
+.capacity-price{font-size:13px;color:var(--ink);font-weight:500}
+.capacity-card-link{font-size:12px;color:var(--ink);font-weight:500;border-top:1px solid var(--line)}
+.capacity-custom{margin-top:17px;padding:23px 22px;background:transparent;border:1px solid var(--line)}
+.capacity-custom h3{font-size:clamp(23px,2.4vw,32px);font-weight:500}
+.capacity-custom p{font-size:12px}
+.solar-disclaimer{font-size:10px;color:var(--muted)}
+.solar-support-section{padding-top:78px;padding-bottom:78px}
+.solar-support-grid{gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.solar-benefit-list,.solar-finance-card{padding:24px 26px;border:0;background:transparent}
+.solar-finance-card{border-left:1px solid var(--line)}
+.solar-benefit-list h3,.solar-finance-card h3{font-size:clamp(23px,2.3vw,31px);font-weight:500}
+.solar-benefit-list p{font-size:12px;padding:12px 0}
+.solar-benefit-list p svg{color:#3a654b}
+.solar-finance-card>p{font-size:12px}
+.bank-list{gap:0;border:1px solid var(--line)}
+.bank-list span{padding:8px 10px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--ink);font-size:10px;font-weight:400}
+.bank-list span:last-child{border-right:0}
+.solar-brand-section{padding-top:73px;padding-bottom:73px;gap:28px}
+.solar-brand-section h2{margin:16px 0}
+.solar-brand-section>div:first-child>p{font-size:12px}
+.equipment-brand-list{gap:0;border:1px solid var(--line)}
+.equipment-brand-list span{min-height:62px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;color:var(--ink);font-size:17px;font-weight:500}
+.equipment-brand-list span:nth-child(2n){border-right:0}
+.equipment-brand-list span:nth-last-child(-n+2){border-bottom:0}
+.solar-guide-cta{padding:46px 5.2%;background:var(--paper);color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.solar-guide-cta .solar-guide-kicker{color:var(--muted)}
+.solar-guide-cta .button.light{border:1px solid var(--line)}
+.solar-detail-page{padding-bottom:70px}
+.solar-detail-hero{min-height:0;grid-template-columns:47% 53%;border:1px solid var(--line);background:var(--paper)}
+.solar-detail-copy{padding:42px 0 42px 7%}
+.solar-detail-copy h1{font-size:clamp(42px,4.7vw,67px);font-weight:500;letter-spacing:-.06em}
+.solar-detail-art{min-height:0;height:min(58svh,570px);background:var(--paper)}
+.solar-detail-5kw .solar-detail-art,.solar-detail-8kw .solar-detail-art,.solar-detail-10kw .solar-detail-art{background:var(--paper)}
+.solar-detail-art .blueprint-reveal{width:100%;height:100%;max-width:700px;aspect-ratio:3/2}
+.solar-detail-badge{right:5%;bottom:6%;padding:12px 15px;box-shadow:none}
+.solar-detail-badge strong{font-weight:500}
+.solar-detail-facts{border-color:var(--line)}
+.solar-detail-facts>div{background:var(--paper)}
+.solar-detail-facts strong{font-weight:500}
+.solar-detail-explain{padding-top:68px;padding-bottom:46px}
+.solar-detail-explain h2{font-size:clamp(34px,3.8vw,53px);font-weight:500}
+.solar-detail-checks p{font-size:12px}
+.solar-detail-checks svg{color:#3a654b}
+.solar-detail-pagination{margin:0 3%}
+.solar-enquiry-page{padding-top:24px}
+.solar-enquiry-card{min-height:0;grid-template-columns:60% 40%;border:1px solid var(--line);background:var(--paper)}
+.solar-enquiry-copy{padding:clamp(28px,5vw,64px)}
+.solar-enquiry-copy h1{font-size:clamp(43px,5.4vw,72px);font-weight:500;letter-spacing:-.06em}
+.solar-enquiry-copy>p,.solar-enquiry-side>p{font-size:13px;line-height:1.55}
+.solar-enquiry-points p{font-size:12px}
+.solar-enquiry-side{background:var(--paper);border-left:1px solid var(--line);padding:30px}
+.solar-enquiry-side h2{font-size:clamp(24px,2.7vw,35px);font-weight:500}
+.solar-enquiry-art{width:calc(100% + 36px);margin:7px -18px -12px;overflow:hidden}
+.solar-enquiry-art .blueprint-reveal{width:100%;aspect-ratio:3/2}
+.solar-enquiry-size{margin-top:auto;padding-top:18px}
+.solar-enquiry-size strong{font-size:65px;font-weight:500}
+.solar-enquiry-note{font-size:10px}
+@media(max-width:760px){
+ .header nav>a,.header .nav-cta,.solar-page-header nav>a{font-size:14px}
+ .solar-guide-hero{min-height:0;height:auto;grid-template-columns:1fr;margin:0 15px;padding:38px 4% 50px;}
+ .solar-guide-copy{padding:18px 2% 0}.solar-guide-copy h1{font-size:clamp(40px,10vw,58px)}
+ .solar-guide-art{height:auto;min-height:230px;margin:2px -9% 0}.solar-guide-art .blueprint-reveal{max-width:520px}
+ .solar-page-heading h2,.solar-brand-section h2,.solar-guide-cta h2{font-size:clamp(34px,8.5vw,45px)}
+ .capacity-card-grid{gap:0}.capacity-card,.capacity-card-2,.capacity-card-3,.capacity-card-4{min-height:280px;padding:14px 11px 12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.capacity-card:nth-child(2n){border-right:0}.capacity-card:nth-last-child(-n+2){border-bottom:0}.capacity-number{font-size:45px}.capacity-card>p{font-size:10px;min-height:60px}.capacity-card-link{font-size:10px}
+ .solar-support-grid{border-bottom:0}.solar-benefit-list,.solar-finance-card{padding:22px 16px}.solar-finance-card{border-left:0;border-top:1px solid var(--line)}
+ .solar-brand-section{background:var(--paper)}.equipment-brand-list span{font-size:15px}.solar-guide-cta{background:var(--paper)}
+ .solar-detail-hero{grid-template-columns:1fr}.solar-detail-art{height:280px}.solar-detail-copy{padding:28px 20px 18px}.solar-detail-copy h1{font-size:clamp(40px,10vw,56px)}
+ .solar-enquiry-card{grid-template-columns:1fr}.solar-enquiry-side{border-left:0;border-top:1px solid var(--line)}.solar-enquiry-art{width:100%;margin:5px 0 -12px}.solar-enquiry-art .blueprint-reveal{max-width:480px}
+}
+@media(max-width:1000px){.capacity-card{padding:17px 14px;min-height:330px}.capacity-card-top .micro{font-size:7px}.capacity-range{font-size:12px}.solar-detail-facts>div{padding:16px}.solar-guide-art{margin-right:-12%}}
+@media(max-width:760px){
+ .brand img{width:145px}.footer-brand-row .brand img,.solar-page-footer-top .brand img{width:155px}.brief-dialog .brand img{width:140px}
+ .solar-page-header{height:53px;top:5px;padding:0 14px}.solar-page-header nav{display:none;position:absolute;left:-1px;right:-1px;top:52px;height:auto;min-width:0;flex-direction:column;padding:7px 14px;background:var(--paper);border:1px solid var(--line);box-shadow:0 12px 28px #24252212}.solar-page-header nav.open{display:flex}.solar-page-header nav>a{width:100%;min-height:48px;padding:14px 8px;justify-content:space-between;font-size:14px}.solar-page-header .menu-button{display:block;padding:10px}
+ .solar-page-footer{padding:27px 20px 17px}.solar-page-footer-top{align-items:flex-start;gap:14px}.solar-page-footer-top p{font-size:10px}.solar-page-footer-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 0}.solar-page-footer-links a{font-size:12px}.solar-page-footer .footer-bottom{flex-wrap:wrap;row-gap:12px;font-size:9px}.solar-page-footer .footer-credit{order:3;flex-basis:100%}
+ .solar-guide-hero{min-height:0;grid-template-columns:1fr;padding:55px 20px 62px}.solar-guide-copy{max-width:none}.solar-guide-copy h1{font-size:clamp(44px,12vw,66px);margin:20px 0 16px}.solar-guide-copy>p,.solar-detail-copy>p,.solar-enquiry-copy>p{font-size:14px}.solar-guide-art{min-height:260px;margin:5px -12% -3%;}.solar-guide-art img{width:115%;max-height:340px}.solar-guide-hero-caption{left:20px;right:20px;bottom:15px;font-size:7px}
+ .capacity-guide,.solar-support-section{padding:62px 20px}.solar-page-heading{display:block;margin-bottom:28px}.solar-page-heading>.solar-guide-kicker{margin-bottom:18px}.solar-page-heading h2,.solar-brand-section h2,.solar-guide-cta h2{font-size:clamp(35px,9vw,48px)}.solar-page-heading>p{font-size:13px;margin-top:16px}.capacity-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.capacity-card{min-height:300px;padding:14px 12px 13px}.capacity-card-top{align-items:flex-start}.capacity-icon{width:30px;height:30px}.capacity-card-top .micro{font-size:6px}.capacity-number{font-size:50px;margin-top:20px}.capacity-range{min-height:36px;font-size:10px;line-height:1.35}.capacity-card>p{font-size:11px;min-height:67px;margin:12px 0}.capacity-price{font-size:12px;min-height:32px}.capacity-card-link{font-size:11px;padding-top:12px}.capacity-custom{padding:20px 17px;align-items:flex-start;flex-direction:column}.capacity-custom h3{font-size:26px}.capacity-custom p{font-size:12px}.capacity-custom .button{width:100%}.solar-disclaimer{font-size:10px}
+ .solar-support-grid,.solar-brand-section{grid-template-columns:1fr;gap:12px}.solar-support-section{padding:58px 20px}.solar-benefit-list,.solar-finance-card{padding:22px 18px}.solar-benefit-list p{font-size:12px}.solar-finance-card>p{font-size:12px}.bank-list{gap:6px}.bank-list span{padding:8px;font-size:10px}.solar-brand-section{padding:58px 20px}.solar-brand-section h2{margin:17px 0}.equipment-brand-list span{min-height:57px;font-size:17px}.solar-guide-cta{padding:42px 20px;align-items:flex-start;flex-direction:column}.solar-guide-cta .button{width:100%}
+ .solar-detail-page{padding:0 15px 60px}.solar-breadcrumb{height:48px;font-size:11px}.solar-detail-hero{grid-template-columns:1fr}.solar-detail-copy{padding:30px 22px 22px}.solar-detail-copy h1{font-size:clamp(43px,11vw,60px);margin:18px 0 15px}.solar-detail-art{min-height:260px;height:290px}.solar-detail-art img{width:115%}.solar-detail-badge{right:5%;bottom:6%;padding:10px 13px}.solar-detail-badge strong{font-size:32px}.solar-detail-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.solar-detail-facts>div{min-height:132px;padding:14px;gap:8px}.solar-detail-facts>div:nth-child(2){border-right:0}.solar-detail-facts>div:nth-child(-n+2){border-bottom:1px solid var(--line)}.solar-detail-facts .solar-guide-kicker{font-size:7px}.solar-detail-facts strong{font-size:18px}.solar-detail-facts small{font-size:9px}.solar-detail-explain{grid-template-columns:1fr;padding:55px 3% 35px;gap:20px}.solar-detail-explain h2{font-size:37px}.solar-detail-explain .solar-disclaimer{grid-column:1}.solar-detail-pagination{padding:18px 0}.solar-detail-pagination>a{font-size:12px;gap:7px}.solar-detail-pagination small{font-size:7px}
+ .solar-enquiry-page{padding:22px 15px 60px}.solar-enquiry-card{grid-template-columns:1fr}.solar-enquiry-copy{padding:28px 20px}.solar-enquiry-copy h1{font-size:clamp(45px,12vw,62px);margin:20px 0 15px}.solar-enquiry-points p{font-size:12px;align-items:flex-start}.solar-contact-actions{display:grid}.solar-contact-actions .button{width:100%}.solar-enquiry-side{padding:28px 22px}.solar-enquiry-size{padding-top:24px;margin-top:24px}.solar-enquiry-size strong{font-size:67px}.solar-enquiry-note{font-size:10px}
+}

@@ -19,5 +19,5 @@ export function HomeArtwork(){
   window.addEventListener('resize',schedule);
   return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule)};
  },[]);
- return <div ref={host} className="home-blueprint"><BlueprintReveal scrub progress={progress} alt="Solar-powered Kerala home, drawn in detailed architectural ink"/></div>;
+ return <div ref={host} className="home-blueprint"><BlueprintReveal scrub progress={progress} alt="Watercolor Kerala home with rooftop solar and a lush tropical garden"/></div>;
 }
