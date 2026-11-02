@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import * as THREE from 'three';
-const descriptions=['Rooftop solar connected to the home and utility grid','Solar, grid and modular battery storage connected as one hybrid system','A battery reserve supplying essential home circuits'];
+const descriptions=['Rooftop solar connected to the home and utility grid','Solar, grid and modular battery storage connected as one hybrid system','Rooftop solar and battery storage supplying essential home circuits without a utility grid connection'];
 export default function Installation({system}:{system:number}){
  const host=useRef<HTMLDivElement>(null),selection=useRef(system);const [failed,setFailed]=useState(false);
  useEffect(()=>{selection.current=system},[system]);
@@ -30,8 +30,8 @@ export default function Installation({system}:{system:number}){
  let angle=.65,wanted=.65,dragging=false,lastX=0,frame=0,visible=true;const reduced=matchMedia('(prefers-reduced-motion: reduce)');const down=(e:PointerEvent)=>{if(e.button!==0)return;dragging=true;lastX=e.clientX};const move=(e:PointerEvent)=>{if(!dragging)return;wanted=Math.max(-.3,Math.min(1.3,wanted+(e.clientX-lastX)*.005));lastX=e.clientX};const up=()=>{dragging=false};el.addEventListener('pointerdown',down);el.addEventListener('pointermove',move);window.addEventListener('pointerup',up);
  const resize=()=>{const w=el.clientWidth,h=el.clientHeight,aspect=w/h,v=Math.max(6.4,10/aspect);camera.left=-v*aspect/2;camera.right=v*aspect/2;camera.top=v/2;camera.bottom=-v/2;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};const ro=new ResizeObserver(resize);ro.observe(el);resize();const io=new IntersectionObserver(e=>{visible=e[0].isIntersecting},{rootMargin:'100px'});io.observe(el);
  let previous=performance.now();const draw=(time:number)=>{frame=requestAnimationFrame(draw);const dt=Math.min(.05,(time-previous)/1000);previous=time;if(!visible)return;const s=selection.current;angle=THREE.MathUtils.damp(angle,wanted,6,dt);camera.position.set(Math.sin(angle)*12,8,Math.cos(angle)*12);camera.lookAt(0,.5,0);
- const approach=(o:THREE.Object3D,target:number)=>{o.scale.y=reduced.matches?target:THREE.MathUtils.damp(o.scale.y,target,5,dt);o.visible=o.scale.y>.015};approach(reserve,s===0?.001:1);approach(grid,s===2?.001:1);approach(roof,s===2?.001:1);home.position.y=THREE.MathUtils.damp(home.position.y,s===2?-.18:0,4,dt);
- routes.forEach(route=>{const on=route.type===0?s!==2:route.type===1?s!==2:route.type===2?s!==0:true;route.mesh.visible=on;route.dots.forEach((dot,i)=>{dot.visible=on&&!reduced.matches;dot.position.copy(route.curve.getPointAt((time*.00012+i/3)%1))})});renderer.render(scene,camera)};draw(performance.now());
+ const approach=(o:THREE.Object3D,target:number)=>{o.scale.y=reduced.matches?target:THREE.MathUtils.damp(o.scale.y,target,5,dt);o.visible=o.scale.y>.015};approach(reserve,s===0?.001:1);approach(grid,s===2?.001:1);approach(roof,1);
+ routes.forEach(route=>{const on=route.type===1?s!==2:route.type===2?s!==0:true;route.mesh.visible=on;route.dots.forEach((dot,i)=>{dot.visible=on&&!reduced.matches;dot.position.copy(route.curve.getPointAt((time*.00012+i/3)%1))})});renderer.render(scene,camera)};draw(performance.now());
  const lost=(e:Event)=>{e.preventDefault();cancelAnimationFrame(frame);setFailed(true)};renderer.domElement.addEventListener('webglcontextlost',lost);
  return()=>{cancelAnimationFrame(frame);ro.disconnect();io.disconnect();el.removeEventListener('pointerdown',down);el.removeEventListener('pointermove',move);window.removeEventListener('pointerup',up);objects.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());renderer.dispose();renderer.domElement.remove()};
  },[]);

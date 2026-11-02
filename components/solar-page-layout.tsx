@@ -1,15 +1,8 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Brand } from '@/components/brand';
+import { MotionText } from '@/components/motion-text';
 import { SolarPageHeader } from '@/components/solar-page-header';
 
 export function SolarPageLayout({ children }: { children: React.ReactNode }) {
-  return <>
-    <SolarPageHeader />
-    {children}
-    <footer className="site-footer solar-page-footer">
-      <div className="solar-page-footer-top"><a href="/" aria-label="Integro home"><Brand /></a><p>Solar, thoughtfully connected<br />for Kerala homes and businesses.</p></div>
-      <div className="solar-page-footer-links"><a href="/solar-systems">Explore solar systems <ArrowUpRight size={14} /></a><a href="/solar-systems/enquire">Enquire about your project <ArrowUpRight size={14} /></a><a href="tel:+919746905948">+91 97469 05948 <ArrowUpRight size={14} /></a></div>
-      <div className="footer-bottom micro"><span>© {new Date().getFullYear()} INTEGRO</span><a className="footer-credit" href="https://www.outriftmedia.com/" target="_blank" rel="noopener noreferrer">Powered by Outrift Media <ArrowUpRight size={14} /></a><a href="#top">BACK TO TOP ↑</a></div>
-    </footer>
-  </>;
+ return <><SolarPageHeader/>{children}<footer className="site-footer"><div className="footer-brand-row"><a href="/" aria-label="Integro home"><Brand/></a><p>Solar, thoughtfully connected<br/>for Kerala homes and businesses.</p></div><div className="footer-content"><div className="footer-signoff"><MotionText as="h2">Energy for<br/><span className="serif">everyday.</span></MotionText></div><nav className="footer-nav" aria-label="Footer navigation"><div><span className="micro">EXPLORE</span><a href="/about">About us <ArrowUpRight size={14}/></a><a href="/services">Services <ArrowUpRight size={14}/></a><a href="/solar-systems">Solar systems <ArrowUpRight size={14}/></a><a href="/calculator">Solar calculator <ArrowUpRight size={14}/></a></div><div><span className="micro">GET STARTED</span><a href="https://wa.me/919746905948?text=Hello%20Integro%2C%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noopener noreferrer">Talk to Integro <ArrowUpRight size={14}/></a><a href="tel:+919746905948">+91 97469 05948 <ArrowUpRight size={14}/></a><a href="tel:+919633677945">+91 96336 77945 <ArrowUpRight size={14}/></a><a href="/solar-systems/enquire">Enquire about your project <ArrowUpRight size={14}/></a></div></nav></div><div className="footer-bottom micro"><span>© {new Date().getFullYear()} INTEGRO</span><a className="footer-credit" href="https://www.outriftmedia.com/" target="_blank" rel="noopener noreferrer">Powered by Outrift Media <ArrowUpRight size={14}/></a><a href="#top">BACK TO TOP ↑</a></div></footer></>;
 }

@@ -1,0 +1,4 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import {BlueprintReveal} from '@/components/blueprint-reveal';
+export function AboutCompanyArt(){const ref=useRef<HTMLDivElement>(null),[progress,setProgress]=useState(0);useEffect(()=>{let frame=0;const update=()=>{frame=0;const r=ref.current?.getBoundingClientRect();if(r)setProgress(Math.max(0,Math.min(1,(innerHeight*.85-r.top)/(innerHeight*.65))))};const scroll=()=>{if(!frame)frame=requestAnimationFrame(update)};update();addEventListener('scroll',scroll,{passive:true});addEventListener('resize',scroll);return()=>{removeEventListener('scroll',scroll);removeEventListener('resize',scroll);cancelAnimationFrame(frame)}},[]);return <div ref={ref} className="about-image-frame"><BlueprintReveal scrub progress={progress} src="/artwork/about-workmanship.png" alt="Solar engineers carefully inspecting rooftop panels at a Kerala home"/></div>}
