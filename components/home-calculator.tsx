@@ -48,7 +48,7 @@ export function HomeCalculator(){
           <p>A rough monthly generation estimate, ready to refine around your roof and the way your home uses power.</p>
           {size?<div className="calc-inline-result"><strong>{monthly}<span> kWh</span></strong><small>ESTIMATED MONTHLY GENERATION</small></div>:<a className="text-link" href="/solar-systems/enquire">Request a site-specific estimate <ArrowUpRight size={16}/></a>}
           <details className="calc-assumptions"><summary className="micro">How this estimate works <Plus size={11}/></summary><p className="calc-assumptions-body">₹8/kWh tariff · 120 kWh/kW/month generation · 9 m²/kW roof allowance. Rounded to 0.5 kW. Not a savings guarantee.</p></details>
-          {size?<a href="/calculator" className="button dark calc-story-cta">Explore pricing & EMI <ArrowUpRight size={16}/></a>:<a href="/solar-systems/enquire" className="button dark calc-story-cta">Enquire about 10 kW+ <ArrowUpRight size={16}/></a>}
+          {size?<a href="/solar-systems#calculator" className="button dark calc-story-cta">Explore pricing & EMI <ArrowUpRight size={16}/></a>:<a href="/solar-systems/enquire" className="button dark calc-story-cta">Enquire about 10 kW+ <ArrowUpRight size={16}/></a>}
         </article>
       </div>
       <div className="calc-visual-wrap">

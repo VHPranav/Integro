@@ -1,5 +1,4 @@
- 'use client';
+'use client';
 import {useState} from 'react';
 import {SolarFinance} from '@/components/solar-finance';
-import {BlueprintReveal} from '@/components/blueprint-reveal';
-export function CalculatorExperience(){const [bill,setBill]=useState(4000);return <><section className="calculator-page-hero"><div><h1>What could<br/>your roof do?</h1><p>Start with your monthly electricity bill. Explore a first estimate, then refine it with Integro.</p><label htmlFor="monthly-bill">Average monthly electricity bill (₹)</label><input id="monthly-bill" type="number" min="1000" max="1000000" step="500" value={bill} onChange={e=>setBill(Math.min(1000000,Math.max(0,Number(e.target.value))))}/><input aria-label="Adjust monthly electricity bill" type="range" min="1000" max="40000" step="500" value={Math.min(40000,Math.max(1000,bill))} onChange={e=>setBill(Number(e.target.value))}/><div className="calculator-scale"><span>₹1,000</span><span>₹40,000+</span></div></div><BlueprintReveal src="/artwork/solar-home-watercolor-cutout.webp" alt="Kerala home with rooftop solar panels"/></section><SolarFinance bill={bill}/></>}
+export function CalculatorExperience({compact=false}:{compact?:boolean}){const [bill,setBill]=useState(4000);return <SolarFinance bill={bill} onBillChange={setBill}/>;}

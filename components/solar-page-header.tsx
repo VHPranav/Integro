@@ -29,7 +29,7 @@ export function SolarPageHeader() {
         <a href="/about" onClick={() => { setMenu(false); setHidden(false); }}>About us</a>
         <a href="/services" onClick={() => { setMenu(false); setHidden(false); }}>Services</a>
         <a href="/solar-systems" onClick={() => setMenu(false)}>Solar systems</a>
-        <a href="/calculator" onClick={() => setMenu(false)}>Calculator</a>
+        <a href="/solar-systems#calculator" onClick={() => setMenu(false)}>Calculator</a>
         <a href="https://wa.me/919746905948?text=Hello%20Integro%2C%20I%20would%20like%20to%20discuss%20solar%20for%20my%20property." target="_blank" rel="noopener noreferrer" className="nav-cta" onClick={() => { setMenu(false); setHidden(false); }}>Let’s talk solar <ArrowUpRight size={16} /></a>
       </nav>
       <button className="menu-button" aria-label={menu ? 'Close navigation' : 'Open navigation'} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button>

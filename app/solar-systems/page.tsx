@@ -1,8 +1,10 @@
+import {CalculatorExperience} from '@/components/calculator-experience';
+import {MotionText} from '@/components/motion-text';
 import {SystemOptions} from '@/components/system-options';
 import {PanelStory} from '@/components/panel-story';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Check, Sun } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SolarPageLayout } from '@/components/solar-page-layout';
 import { BlueprintReveal } from '@/components/blueprint-reveal';
 import { equipmentBrands, solarSystems, supportedBanks } from '@/lib/solar-systems';
@@ -14,44 +16,26 @@ export const metadata: Metadata = {
 
 export default function SolarSystemsPage() {
   return <SolarPageLayout>
-    <main id="top" className="solar-guide-page">
-      <section className="solar-guide-hero">
-        <div className="solar-guide-copy">
-          <span className="solar-guide-kicker"><Sun size={15} /> A clear place to start</span>
-          <h1>Find the right<br />system for your <span>home.</span></h1>
-          <p>Use your average monthly electricity bill as a first clue. We’ll help shape the capacity around your roof, daily energy use and the way you want your home to run.</p>
-          <a className="button dark" href="#capacity-guide">Explore system sizes <ArrowRight size={17} /></a>
-        </div>
-        <div className="solar-guide-art"><BlueprintReveal src="/artwork/solar-home-watercolor-cutout.webp" alt="Watercolor Kerala home with rooftop solar panels" /></div>
-        <div className="solar-guide-hero-caption micro"><span>INTEGRO / SOLAR FOR EVERYDAY</span><span>KERALA, INDIA</span></div>
-      </section>
+    <main id="top" className="solar-guide-page solar-overview">
+      <section className="services-hero solar-overview-hero"><div className="services-hero-art"><BlueprintReveal src="/artwork/services-solar.webp" alt="Blue rooftop solar panels on a Kerala home, illustrated in watercolor"/></div><div className="services-hero-copy"><MotionText as="h1">Your roof.<br/>A brighter possibility.</MotionText><div><p>A solar system shaped around your space, energy use and everyday life. Discover the connection that works for you.</p><a className="text-link" href="#capacity-guide">Find your system <ArrowRight size={18}/></a></div></div></section>
+      <nav className="solar-overview-nav" aria-label="Solar guide sections"><a href="#solutions">System types <ArrowRight size={16}/></a><a href="#capacity-guide">Capacity guide <ArrowRight size={16}/></a><a href="#anatomy">Inside the panel <ArrowRight size={16}/></a><Link href="/solar-systems#calculator">Pricing & EMI <ArrowUpRight size={16}/></Link></nav>
+      <PanelStory/>
+
 
       <SystemOptions/>
-      <section className="solar-calculator-link section-pad"><h2>Start with your electricity bill.</h2><p>Explore system capacity, investment, potential subsidy and monthly EMI.</p><Link className="button dark" href="/calculator">Open solar calculator <ArrowUpRight size={18}/></Link></section>
+
       <section id="capacity-guide" className="capacity-guide">
-        <div className="solar-page-heading"><span className="solar-guide-kicker">01 / START WITH YOUR BILL</span><h2>A system that fits<br /><em>the way you live.</em></h2><p>Choose the range closest to your monthly bill. These capacities are starting recommendations; a site visit and bill review confirm the right system.</p></div>
-        <div className="capacity-card-grid">{solarSystems.map((system, index) => <Link href={`/solar-systems/${system.slug}`} key={system.slug} className={`capacity-card capacity-card-${index + 1}`}>
-          <div className="capacity-card-top"><span className="capacity-icon"><Sun size={19} /></span><span className="micro">0{index + 1} / CAPACITY GUIDE</span></div>
-          <strong className="capacity-number">{system.capacity}<small> kW</small></strong>
-          <span className="capacity-range">{system.billRange}</span>
-          <p>{system.description}</p>
-          <span className="capacity-price">{system.price}</span>
-          <span className="capacity-card-link">View this system <ArrowUpRight size={17} /></span>
-        </Link>)}</div>
+        <div className="solar-page-heading"><h2>A system that fits<br /><em>the way you live.</em></h2><p>Choose the range closest to your monthly bill. These capacities are starting recommendations; a site visit and bill review confirm the right system.</p></div>
+        <div className="solar-size-list">{solarSystems.map(system=><Link key={system.slug} href={`/solar-systems/${system.slug}`} className="solar-size-row"><strong>{system.capacity}<small> kW</small></strong><div><span>Monthly electricity bill</span><p>{system.billRange.replace(' / month','')}</p></div><div><span>Indicative system price</span><p>{system.price}</p></div><span className="solar-size-action">Explore <ArrowUpRight size={19}/></span></Link>)}</div>
         <div className="capacity-custom"><div><span className="solar-guide-kicker">ABOVE ₹26,000 / MONTH</span><h3>Need more than 10 kW?</h3><p>We’ll look at the property, your usage and future plans, then help you explore a larger system.</p></div><Link className="button dark" href="/solar-systems/enquire">Enquire with us <ArrowUpRight size={17} /></Link></div>
         <p className="solar-disclaimer">Monthly generation and roof area are indicative planning allowances. Actual output and layout depend on location, season, shading, roof access and equipment. Final capacity and price follow a site review and written proposal.</p>
       </section>
 
-      <PanelStory/>
-      <section className="solar-support-section">
-        <div className="solar-page-heading"><span className="solar-guide-kicker">02 / MORE THAN PANELS</span><h2>Thought through,<br /><em>from roof to switch.</em></h2></div>
-        <div className="solar-support-grid"><article className="solar-benefit-list"><h3>Why plan with Integro?</h3>{['Capacity selected around your bill and roof','Quality panels and inverters, subject to availability','Professional installation and aftercare','Guidance on checking subsidy eligibility','Loan and EMI options can be discussed'].map((benefit) => <p key={benefit}><Check size={17} />{benefit}</p>)}</article>
-          <article className="solar-finance-card"><span className="solar-guide-kicker">FINANCING, IF IT FITS</span><h3>Ask about loan and EMI options.</h3><p>Financing availability and terms depend on the lender, the system and your eligibility. Integro can help you understand the application path; confirm all rates, documents and subsidy details with the bank and relevant programme before proceeding.</p><div className="bank-list" aria-label="Banks listed in the supplied reference">{supportedBanks.map((bank) => <span key={bank}>{bank}</span>)}</div></article></div>
-      </section>
+      <div id="calculator" className="solar-embedded-calculator"><CalculatorExperience compact/></div>
 
-      <section className="solar-brand-section"><div><span className="solar-guide-kicker">EQUIPMENT WE CAN DISCUSS</span><h2>Good components.<br /><em>Chosen for the system.</em></h2><p>Brands listed in your reference guide. Final equipment options depend on stock, compatibility and the system design.</p></div><div className="equipment-brand-list">{equipmentBrands.map((brand) => <span key={brand}>{brand}</span>)}</div></section>
-      <section className="section-pad"><div className="section-heading"><h2>A little clarity.<br/><span className="serif">Before you begin.</span></h2></div><div className="solar-faq">{[['Will solar work during Kerala’s monsoon?','Solar panels still generate in cloudy conditions, though output reduces with less sunlight. Site design considers shade, roof orientation and seasonal variation.'],['Will my lights stay on during a power cut?','Standard on-grid systems shut down during an outage. Backup requires compatible storage, an inverter and correctly designed essential circuits.'],['How much roof space will I need?','Allow approximately 8–10 square metres per kW for early planning. Panel placement, shading, access and roof shape determine the final layout.'],['Can I add a battery later?','It depends on the inverter and system architecture. Discuss future storage requirements before selecting equipment.']].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
-      <section className="solar-guide-cta"><div><span className="solar-guide-kicker">A GOOD SYSTEM STARTS WITH A CONVERSATION</span><h2>Let’s see what<br /><em>your roof can do.</em></h2></div><Link className="button light" href="/solar-systems/enquire">Talk to Integro <ArrowUpRight size={17} /></Link></section>
+      <section className="solar-practical section-pad"><div><h2>Considered down<br/><span className="serif">to the details.</span></h2><p>Equipment, installation and support, brought together around your property.</p></div><div className="solar-practical-details"><details><summary>Equipment & brands <span>+</span></summary><p>Final equipment depends on compatibility, availability and your system design.</p><div className="solar-inline-brands">{equipmentBrands.map(brand=><span key={brand}>{brand}</span>)}</div></details><details><summary>Installation & aftercare <span>+</span></summary><p>Capacity planning, professional installation, electrical checks and aftercare are considered together. Your site and bill review guide the final proposal.</p></details><details><summary>Financing & eligibility <span>+</span></summary><p>Loan availability, rates and eligibility depend on the lender. Confirm documents, charges and subsidy conditions before proceeding.</p><div className="solar-inline-brands">{supportedBanks.map(bank=><span key={bank}>{bank}</span>)}</div></details></div></section>
+
+
     </main>
   </SolarPageLayout>;
 }

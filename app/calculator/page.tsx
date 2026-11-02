@@ -1,5 +1,3 @@
-import type {Metadata} from 'next';
-import {SolarPageLayout} from '@/components/solar-page-layout';
-import {CalculatorExperience} from '@/components/calculator-experience';
-export const metadata:Metadata={title:'Solar & EMI calculator | Integro',description:'Explore solar capacity, estimated investment, residential subsidy and monthly EMI based on your electricity bill.'};
-export default function Page(){return <SolarPageLayout><main id="top"><CalculatorExperience/></main></SolarPageLayout>;}
+ 'use client';
+import {useEffect} from 'react';
+export default function CalculatorRedirect(){useEffect(()=>{window.location.replace('/solar-systems#calculator')},[]);return <main style={{padding:40}}><p>The solar calculator is now part of Solar Systems.</p><a href="/solar-systems#calculator">Open solar calculator</a></main>;}
